@@ -7,18 +7,18 @@ namespace LoggingKata
     public class TacoBell : ITrackable
     {
         //string Name { get; set; }
-        string ITrackable.Name { get; set; }
+        public string  Name { get; set; }
 
         //Point Location { get; set; }
-        Point ITrackable.Location { get; set; }
+        public Point Location { get; set; }
 
         public void SetName(string name)
         {
-            
+            Name = name;
         }
-        public void SetPoint(Point point)
+        public void SetLocation(Point point)
         {
-
+            Location = point;
         }
     }
 }
