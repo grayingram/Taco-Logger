@@ -1,6 +1,6 @@
 using System;
 using Xunit;
-
+using LoggingKata;
 namespace LoggingKata.Test
 {
     public class TacoParserTests
@@ -8,6 +8,10 @@ namespace LoggingKata.Test
         [Fact]
         public void ShouldDoSomething()
         {
+            TacoParser tacoParser = new TacoParser();
+
+            ITrackable result = tacoParser.Parse("");
+            Assert.Equal(null, result);
             // TODO: Complete Something, if anything
         }
 

@@ -1,4 +1,6 @@
-﻿namespace LoggingKata
+﻿using System;
+using System.Linq;
+namespace LoggingKata
 {
     public interface ITrackable
     {
