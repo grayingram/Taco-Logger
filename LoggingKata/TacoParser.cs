@@ -28,7 +28,7 @@ namespace LoggingKata
                 {
                     if(cells[i].Length > 0)
                     {
-                        logger.LogError("Blank Space");
+                        logger.LogInfo("Incomplete");
                         return null;
                     }
                     else

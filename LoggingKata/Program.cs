@@ -21,6 +21,15 @@ namespace LoggingKata
             var parser = new TacoParser();
 
             var locations = lines.Select(parser.Parse);
+            var myList = locations.ToList();
+            foreach(var location in myList)
+            {
+                Console.WriteLine(location.Location.Latitude);
+                Console.WriteLine(location.Location.Longitude);
+                Console.WriteLine(location.Name);
+                Console.ReadLine();
+
+            }
 
             Console.ReadLine();
 
