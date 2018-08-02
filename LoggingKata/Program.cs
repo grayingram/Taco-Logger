@@ -22,7 +22,7 @@ namespace LoggingKata
 
             var locations = lines.Select(parser.Parse);
             var myList = locations.ToList();
-            foreach(var location in myList)
+            foreach(var location in locations)
             {
                 Console.WriteLine(location.Location.Latitude);
                 Console.WriteLine(location.Location.Longitude);

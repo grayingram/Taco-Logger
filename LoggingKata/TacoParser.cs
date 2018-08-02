@@ -21,9 +21,10 @@ namespace LoggingKata
             }
             logger.LogInfo("Begin parsing");
             TacoBell company = new TacoBell();
-            for(int i = 0; i < cells.Length; i++)
+            Point myTacoLocal = new Point();
+            for (int i = 0; i < cells.Length; i++)
             {
-                Point myTacoLocal = new Point();
+                
                 if (String.IsNullOrWhiteSpace(cells[i]))
                 {
                     if(cells[i].Length > 0)
@@ -46,16 +47,18 @@ namespace LoggingKata
                 else if(i == 1)
                 {
                     Console.WriteLine(cells[i]);
-                    myTacoLocal.Longitude = double.Parse(cells[i]);
+                    
+                    myTacoLocal.Longitude = Convert.ToDouble(cells[i]);
                 }
                 else
                 {
                     Console.WriteLine(cells[i]);
                     company.SetName(cells[i]);
                 }
-                company.SetLocation(myTacoLocal);
+                
                
             }
+            company.SetLocation(myTacoLocal);
             return company;
             // grab the latitude from your array at index 0
             // grab the longitude from your array at index 1
