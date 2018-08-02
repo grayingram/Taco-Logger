@@ -40,7 +40,11 @@ namespace LoggingKata.Test
         [InlineData("")]
         public void ShouldFailParse(string str)
         {
-            // TODO: Complete Should Fail Parse
+            TacoParser tacoParser = new TacoParser();
+
+            ITrackable result = tacoParser.Parse(str);
+
+            Assert.Equal(null, result);
         }
     }
 }
