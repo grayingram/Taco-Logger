@@ -29,7 +29,7 @@ namespace LoggingKata
                 {
                     if(cells[i].Length > 0)
                     {
-                        logger.LogInfo("Incomplete");
+                        logger.LogInfo("Incomplete Data");
                         return null;
                     }
                     else
