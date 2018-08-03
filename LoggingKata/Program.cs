@@ -27,8 +27,8 @@ namespace LoggingKata
             var locations = lines.Select(parser.Parse);
             var myList = locations.ToList();
             var myArray = locations.ToArray();
-            ITrackable local1 = new TacoBell();
-            ITrackable local2 = new TacoBell();
+            TacoBell local1 = new TacoBell();
+            TacoBell local2 = new TacoBell();
             
             //GeoCoordinate geoCoordinate = new GeoCoordinate();
             GeoPosition<GeoCoordinate> geoPosition = new GeoPosition<GeoCoordinate>();
@@ -47,16 +47,31 @@ namespace LoggingKata
                     else if(geoCoord.GetDistanceTo(geoCoord2) > distance)
                     {
                         distance = geoCoord.GetDistanceTo(geoCoord2);
+                        Point point1 = new Point(location.Location.Latitude, location.Location.Longitude);
+                        local1.SetLocation(point1);
+                        local1.SetName(location.Name);
+                        Point point2 = new Point(Blocation.Location.Latitude, Blocation.Location.Longitude);
+                        local2.SetLocation(point2);
+                        local2.SetName(Blocation.Name);
                     }
                     else
                     {
 
                     }
                 }
-                Console.WriteLine(location.Name);
-                Console.ReadLine();
+
+                //Console.WriteLine(location.Name);
+                //Console.ReadLine();
 
             }
+            logger.LogInfo("Greatest distance");
+            Console.WriteLine(distance);
+            logger.LogInfo("Location #1 Name");
+            Console.WriteLine(local1.GetName());
+            logger.LogInfo("Location #2 Name");
+            Console.WriteLine(local2.GetName());
+            Console.ReadLine();
+
             
             
             

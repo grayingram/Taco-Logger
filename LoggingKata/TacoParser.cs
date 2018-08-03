@@ -40,19 +40,18 @@ namespace LoggingKata
                 }
                 else if(i == 0)
                 {
-                    Console.WriteLine(cells[i]);
+                    
                     myTacoLocal.Latitude = double.Parse(cells[i]);
                     
                 }
                 else if(i == 1)
                 {
-                    Console.WriteLine(cells[i]);
-                    
+                   
                     myTacoLocal.Longitude = Convert.ToDouble(cells[i]);
                 }
                 else
                 {
-                    Console.WriteLine(cells[i]);
+                    
                     company.SetName(cells[i]);
                 }
                 

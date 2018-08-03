@@ -20,5 +20,10 @@ namespace LoggingKata
         {
             Location = point;
         }
+
+        public string GetName()
+        {
+            return Name;
+        }
     }
 }
