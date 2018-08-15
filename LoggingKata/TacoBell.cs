@@ -15,6 +15,7 @@ namespace LoggingKata
         public void SetName(string name)
         {
             Name = name;
+
         }
         public void SetLocation(Point point)
         {

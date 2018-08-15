@@ -25,8 +25,7 @@ namespace LoggingKata
             var parser = new TacoParser();
             double distance = 0.00;
             var locations = lines.Select(parser.Parse);
-            var myList = locations.ToList();
-            var myArray = locations.ToArray();
+            
             TacoBell local1 = new TacoBell();
             TacoBell local2 = new TacoBell();
             
