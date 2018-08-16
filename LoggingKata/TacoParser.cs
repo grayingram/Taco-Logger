@@ -63,7 +63,16 @@ namespace LoggingKata
             logger.LogInfo("Begin parsing");
             TacoBell company = new TacoBell();
             Point myTacoLocal = new Point();
-
+            double lat;
+            double lon;
+            if(!double.TryParse(cells[0], out lat) || !double.TryParse(cells[1], out lon))
+            {
+                return null;
+            }
+            if(Math.Abs(lon) > 180 || Math.Abs(lat) > 90)
+            {
+                return null;
+            }
             for (int i = 0; i < cells.Length; i++)
             {
                 
