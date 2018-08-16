@@ -1,4 +1,8 @@
 ﻿using System;
+using System.IO;
+using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
+using MySql.Data.MySqlClient;
 namespace LoggingKata
 {
     /// <summary>
@@ -7,7 +11,44 @@ namespace LoggingKata
     public class TacoParser
     {
         readonly ILog logger = new TacoLogger();
-        
+        public string ConnStr { get; private set; }
+
+        public TacoParser()
+        {
+            var configBuilder = new ConfigurationBuilder()
+                  .SetBasePath(Directory.GetCurrentDirectory())
+#if DEBUG
+                .AddJsonFile("appsettings.debug.json")
+#else
+                .AddJsonFile("appsettings.release.json")
+#endif
+                .Build();
+           ConnStr = configBuilder.GetConnectionString("DefaultConnection");
+        }
+
+        public List<string> GetDatafromDB()
+        {
+            MySqlConnection conn = new MySqlConnection(ConnStr);
+            List<string> myData = new List<string>();
+            using (conn)
+            {
+                conn.Open();
+
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "SELECT latitude, longitude, description FROM locations;";
+                MySqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    string lat = dr["latitude"].ToString();
+                    string lon = dr["longitude"].ToString();
+                    string name = dr["description"].ToString();
+                    string data = "" + lat + "," + lon + "," + name;
+                    myData.Add(data);
+                }
+                return myData;
+            }
+        }
+
         public ITrackable Parse(string line)
         {
             var cells = line.Split(',');
@@ -22,6 +63,7 @@ namespace LoggingKata
             logger.LogInfo("Begin parsing");
             TacoBell company = new TacoBell();
             Point myTacoLocal = new Point();
+
             for (int i = 0; i < cells.Length; i++)
             {
                 
@@ -38,6 +80,7 @@ namespace LoggingKata
                         return null;
                     }
                 }
+                
                 else if(i == 0)
                 {
                     
